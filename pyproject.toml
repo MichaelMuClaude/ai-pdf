@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ai-pdf"
+version = "0.1.0"
+description = "One tool for PDFs that AI agents can use: inspect, check, repair, decrypt, merge, split, extract, rotate, and convert to Markdown"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+# PDF to Markdown. Installs PyTorch, so it is large.
+docling = ["docling>=2.0.0"]
+dev = ["pytest>=8", "pypdf>=5", "docling>=2.0.0"]
+
+[project.scripts]
+ai-pdf = "ai_pdf.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ai_pdf"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
